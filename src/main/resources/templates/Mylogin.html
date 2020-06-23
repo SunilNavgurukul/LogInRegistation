@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login page</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lobster&family=Permanent+Marker&family=Righteous&display=swap"
+	rel="stylesheet">
+<style>
+* {
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	left: 0px;
+}
+
+body {
+	background-color: black;
+}
+
+/* header */
+nav {
+	display: flex;
+	position: relative;
+	justify-content: flex-end;
+}
+
+nav::before {
+	content: "";
+	background-color: #014043;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	opacity: 0.5;
+}
+
+#navbar {
+	display: flex;
+}
+
+#navbar li {
+	list-style: none;
+	margin: 25px 35px;
+}
+
+#navbar a {
+	text-decoration: none;
+	display: block;
+	padding: 8px 43px;
+	border: 3px solid #6e0f59;
+	font-family: 'Righteous', cursive;
+	color: rgb(219, 157, 157);
+	border-radius: 25px;
+	font-size: 20px;
+	transition: all 0.8s ease-out;
+}
+
+#navbar a:hover {
+	border: 3px solid #547b80;
+	background-color: #6bd6e3;
+	color: black;
+}
+
+/* login-container */
+header::before {
+	content: "";
+	background:
+		url('https://cdn.pixabay.com/photo/2020/04/08/16/32/keyboard-5017973__340.jpg')
+		no-repeat center center/cover;
+	position: absolute;
+	height: 900px;
+	width: 100%;
+	z-index: -1;
+	opacity: 0.9;
+}
+
+#login-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	text-align: center;
+	margin: 33px 80px;
+}
+
+#login-container h1 {
+	font-size: 70px;
+	font-family: 'Fredoka One', cursive;
+	margin: 30px 0px;
+	color: #8a8d15;
+	width: 100%;
+}
+
+#login-container p {
+	font-size: 30px;
+	font-family: 'Righteous', cursive;
+	margin-bottom: 15px;
+	color: #dbdd83;
+}
+
+.highlight {
+	color: #5f9ea0;
+	transition: color 0.3s ease-out;
+}
+
+.highlight:hover {
+	color: aquamarine;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+	color: cadetblue;
+}
+
+.form-group input {
+	width: 100%;
+	font-size: 20px;
+	padding: 15px;
+	/* border-radius: 25px; */
+	border: none;
+	background-color: #300026;
+	color: blanchedalmond;
+}
+
+.form-group label {
+	font-size: 30px;
+	font-family: 'Righteous', cursive;
+	padding: 10px 10px;
+}
+
+#btn {
+	margin-top: 93px;
+}
+
+#btn input {
+	text-decoration: none;
+	font-size: 35px;
+	font-family: 'Righteous', cursive;
+	color: rgb(214, 169, 169);
+	background: linear-gradient(45deg, #000000f2, #5b216a, #000000);
+	border-radius: 50px;
+	padding: 15px 120px;
+	margin: 45px 10px;
+	transition: all 0.8s ease-out;
+}
+
+#btn input:hover {
+	background: aqua;
+	color: black;
+}
+
+@media only screen and (max-width: 1100px) {
+	#navbar {
+		justify-content: space-evenly;
+		width: 100%;
+	}
+	#navbar li {
+		margin: 2px 5px;
+	}
+	#navbar li a {
+		font-size: 13px;
+		margin: 3px;
+		padding: 5px 17px;
+	}
+	header::before {
+		height: 600px;
+	}
+	/* section::before {
+                height: 700px;
+            } */
+	#login-container {
+		margin: 0px;
+	}
+	#login-container h1 {
+		font-size: 40px;
+	}
+	#login-container p {
+		font-size: 18px;
+	}
+	.form-group label {
+		font-size: 1rem;
+	}
+	.form-group input {
+		width: 80%;
+		padding: 5px;
+	}
+	#btn {
+		margin-top: 40px;
+	}
+	#btn input {
+		font-size: 1.2rem;
+		padding: 10px 60px;
+	}
+}
+</style>
+</head>
+<body>
+	<section id="login-container">
+		<h1>Login</h1>
+		<p>Welcome back. Login to access the Sweet Marketplace.</p>
+		<form id="info" th:action="@{/login}" method="post">
+			<div th:if="${param.error}" class="alert alert-error">
+				Invalid user name or password
+				</div>
+			<div th:if="${param.logout}" class="alert alert-sucessful">
+				You have been logged out
+				</div>
+			<div class="form-group">
+				<label for="name">Email Id</label> <input type="email" id="name"
+					name="name" placeholder="Enter Email" required>
+			</div>
+			<hr>
+			<div class="form-group">
+				<label for="password">password</label> <input type="password"
+					name="password" id="password" placeholder="password" required>
+			</div>
+			<hr>
+			<div id="btn">
+				<input type="submit">&#8674 Continue</input>
+			</div>
+		</form>
+	</section>
+</body>
+</html>
